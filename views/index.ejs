@@ -42,122 +42,30 @@
 
     <!-- Create Card -->
     <div class="message-holder mt-5">
-        <div class="card">
+
+      <!-- Ejs Syntax -->
+        <% messages.forEach(item => { %>
+          <div class="card">
             <div class="card-header">
               Anonymous
             </div>
             <div class="card-body">
               <blockquote class="blockquote mb-0">
-                <p>A well-known quote, contained in a blockquote element.</p>
+                <p>
+                  <%- item.message %>
+                </p>
                 <footer class="blockquote-footer">
                     <small>
-                        Created: <cite title="Source Title">2 min ago</cite>
+                        Created:
+                        <cite title="Source Title">
+                          <%- moment(item.createdAt).fromNow() %>
+                        </cite>
                     </small></footer>
               </blockquote>
             </div>
         </div>
-
-        <!-- Card 2 -->
-        <div class="card my-4">
-            <div class="card-header">
-              Anonymous
-            </div>
-            <div class="card-body">
-              <blockquote class="blockquote mb-0">
-                <p>A well-known quote, contained in a blockquote element.</p>
-                <footer class="blockquote-footer">
-                    <small>
-                        Created: <cite title="Source Title">2 min ago</cite>
-                    </small></footer>
-              </blockquote>
-            </div>
-          </div>
-        <!-- Card 2 end -->
-
-        <!-- Card 2 -->
-        <div class="card my-4">
-            <div class="card-header">
-              Anonymous
-            </div>
-            <div class="card-body">
-              <blockquote class="blockquote mb-0">
-                <p>A well-known quote, contained in a blockquote element.</p>
-                <footer class="blockquote-footer">
-                    <small>
-                        Created: <cite title="Source Title">2 min ago</cite>
-                    </small></footer>
-              </blockquote>
-            </div>
-          </div>
-        <!-- Card 2 end -->
-
-        <!-- Card 2 -->
-        <div class="card my-4">
-            <div class="card-header">
-              Anonymous
-            </div>
-            <div class="card-body">
-              <blockquote class="blockquote mb-0">
-                <p>A well-known quote, contained in a blockquote element.</p>
-                <footer class="blockquote-footer">
-                    <small>
-                        Created: <cite title="Source Title">2 min ago</cite>
-                    </small></footer>
-              </blockquote>
-            </div>
-          </div>
-        <!-- Card 2 end -->
-
-        <!-- Card 2 -->
-        <div class="card my-4">
-            <div class="card-header">
-              Anonymous
-            </div>
-            <div class="card-body">
-              <blockquote class="blockquote mb-0">
-                <p>A well-known quote, contained in a blockquote element.</p>
-                <footer class="blockquote-footer">
-                    <small>
-                        Created: <cite title="Source Title">2 min ago</cite>
-                    </small></footer>
-              </blockquote>
-            </div>
-          </div>
-        <!-- Card 2 end -->
-
-        <!-- Card 2 -->
-        <div class="card my-4">
-            <div class="card-header">
-              Anonymous
-            </div>
-            <div class="card-body">
-              <blockquote class="blockquote mb-0">
-                <p>A well-known quote, contained in a blockquote element.</p>
-                <footer class="blockquote-footer">
-                    <small>
-                        Created: <cite title="Source Title">2 min ago</cite>
-                    </small></footer>
-              </blockquote>
-            </div>
-          </div>
-        <!-- Card 2 end -->
-
-        <!-- Card 2 -->
-        <div class="card my-4">
-            <div class="card-header">
-              Anonymous
-            </div>
-            <div class="card-body">
-              <blockquote class="blockquote mb-0">
-                <p>A well-known quote, contained in a blockquote element.</p>
-                <footer class="blockquote-footer">
-                    <small>
-                        Created: <cite title="Source Title">2 min ago</cite>
-                    </small></footer>
-              </blockquote>
-            </div>
-          </div>
-        <!-- Card 2 end -->
+        <% }) %>
+        <!-- Ejs Syntax end -->
 
     </div>
     <!-- Card End -->

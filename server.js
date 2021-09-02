@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 const ejs = require('ejs');
 const { response } = require('express');
-const port = process.env.PORT || 5050;
+const port = process.env.PORT || 7000;
 const mongoose = require('mongoose');
 const Message = require('./models/Message');
 
@@ -23,10 +23,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('views',path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.locals.moment = require('moment');
 
 //get
-app.get('/', (req, res) => {
-    res.render('index');
+app.get('/', async (req, res) => {
+    let allmessages = await Message.find({}).sort({_id: -1});
+    console.log(allmessages);
+    res.render('index', {messages: allmessages});
 });
 
 app.post('/message/create-message',(req,res)=>{
@@ -49,4 +52,5 @@ app.post('/message/create-message',(req,res)=>{
 });
 
 
-app.listen(port, () => console.log(`Server listening on port 9000:${port}`));
+
+app.listen(port, () => console.log(`Server listening on port :${port}`));
