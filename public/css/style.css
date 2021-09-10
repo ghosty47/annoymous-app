@@ -1,5 +1,5 @@
 body{
-    background-color: #e7eaee;
+    background-color: #cdd6e2;
 }
 
 .navbar .navbar-brand > img{
@@ -9,7 +9,6 @@ body{
 .msg-form{
     margin-top: 120px;
 }
-
 .message-holder{
     width: 70vw;
     margin: 50px auto;

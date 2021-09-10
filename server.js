@@ -27,14 +27,30 @@ passport.use(new LocalStrategy({
     await User.findOne({email})
         .then(async (user) => {
             if(!user) return done(null, false, req.flash('error-message', 'user not found'));
-            
             await bcrypt.compare(password, user.password, (err, passwordMatch)=> {
+                if(err){
+                    return err;
+                }
+
                 if(!passwordMatch) return done(null, false, req.flash('error-message', 'Invalid Password'));
-                
+               
+                    return done(null, user, req.flash('success-message', 'Login successfull'));
             });
+
+           
         })
-        .catch(err => {})
+        // .catch(err => {})
 }));
+
+passport.serializeUser(function(user, done){
+    done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done){
+    User.findById(id, function(err, user){
+        done(err, user);
+    });
+});
 
 
 //DB Connection
@@ -176,11 +192,16 @@ app.post('/user/register', async(req, res)=>{
         return res.redirect('/user/login');
 });
 
+
 //User Login
 app.get('/user/login', (req, res)=>{
     res.render('login');
 });
 
+//User Profile
+app.get('/user/profile', (req, res)=>{
+    res.render('profile');
+});
      // //To check if email does not exist :ALTERNATIVE 1
 
 // app.post('/user/login', async (req, res)=>{
@@ -204,6 +225,13 @@ app.post('/user/login', passport.authenticate('local', {
     successFlash: true,
     session: true
 }));
+
+//User Logout
+app.get('/user/logout', (req, res)=>{
+    req.logOut();
+    req.flash('success-message', 'User logged out');
+    res.redirect('/user/login');
+});
 
 
 app.listen(port, () => console.log(`Server listening on port : ${port}`));
